@@ -21,7 +21,7 @@ app.use(bodyParser.json()) ;
 const server = http.createServer(app) ; 
 mongoose.Promise = Promise ; 
 
-const dbUrl:string = "mongodb+srv://mohamed:j7WBurqacAGcBTIw@cluster0.2kn98.mongodb.net" ; 
+const dbUrl:string = process.env.DATABASE_URL; 
 mongoose.connect(dbUrl) ;
 mongoose.connection.on("connected" , ()=>{
    console.log(`database connected successfully`) ; 
