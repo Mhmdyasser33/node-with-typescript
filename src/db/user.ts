@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
         salt : {type  :String , select : false},
         sessionToken : {type : String , select : false}
     }
-})
+},{timestamps : true},)
 
 export const UserModel = mongoose.model("User" , UserSchema) ; 
 // create all actions 
