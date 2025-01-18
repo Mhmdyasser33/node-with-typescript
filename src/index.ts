@@ -1,6 +1,6 @@
 import dotenv from "dotenv" ;
 dotenv.config() ; 
-import express, { Router } from "express";
+import express from "express";
 import mongoose, { Promise } from "mongoose" ; 
 import cors from "cors";
 import http from "http" ;

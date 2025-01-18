@@ -26,7 +26,7 @@ export const register = async(req : express.Request , res : express.Response) =>
     return res.status(200).json(user);
   }catch(error){
     console.log(`Error in register user ${error}`)
-    return res.sendStatus(400)  
+    return res.sendStatus(400)  ;
   }
 }
 
@@ -38,7 +38,7 @@ export const login = async(req :express.Request , res : express.Response)=>{
     } 
 
    // Retrieve the user by email and include the authentication salt and password in the query result for further validation.
-   const foundUser = await getUserByEmail(email).select("+authentication.salt +r.authentication.password");
+   const foundUser = await getUserByEmail(email).select("+authentication.salt +authentication.password");
     if(!foundUser){
       return res.sendStatus(404);
     }
@@ -57,3 +57,4 @@ export const login = async(req :express.Request , res : express.Response)=>{
   }
 
 }
+
