@@ -1,5 +1,5 @@
 import express from "express";
-import {createUser, getUserByEmail} from "../db/user"
+import {createUser, getUserByEmail, getUserBySessionToken} from "../db/user"
 import { authentication, random } from "../helpers";
 
 export const register = async(req : express.Request , res : express.Response) =>{
@@ -56,5 +56,22 @@ export const login = async(req :express.Request , res : express.Response)=>{
     return res.sendStatus(400) ; 
   }
 
+}
+
+export const logout = async(req : express.Request , res : express.Response) =>{
+  try{
+    const sessionToken = req.cookies["authSessionToken"];
+    if(!sessionToken){
+      return res.sendStatus(401) ;
+    } 
+    res.clearCookie("authSessionToken" , {
+      domain : "localhost" , 
+      path : "/" 
+    })
+    return res.status(200).json({message : "sessionToken cleared successfully"});
+  }catch(error){
+    console.log(error)
+    return res.sendStatus(400);
+  }
 }
 
